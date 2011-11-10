@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+The Orb configuration file
+http://m4tx.pl/
+
+Feel free to modify this file. But please note that doing so might cause the game to function improperly.
+-->
+
+<config>
+    <video>
+        <shadows>false</shadows>
+        <FOV>75</FOV>
+    </video>
+    <userProgress> <!-- Don't edit this or die! -->
+        <lastWonLevel>13</lastWonLevel>
+    </userProgress> <!-- OMG! You edited it! Cheater, cheater! -->
+    <debug>
+        <physicEngine>false</physicEngine>
+        <graphicEngine>false</graphicEngine>
+    </debug>
+</config>
+

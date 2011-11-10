@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty>
+    <!-- ####################################### -->
+    <!-- ########## Uses and registers ######### -->
+    <!-- ####################################### -->
+    <useStyles filename="nifty-default-styles.xml" />
+    <useControls filename="nifty-default-controls.xml" />   
+    <registerEffect name="fade" class="de.lessvoid.nifty.effects.impl.Fade" />
+    <registerEffect name="move" class="de.lessvoid.nifty.effects.impl.Move" />
+    <registerEffect name="playSound" class="de.lessvoid.nifty.effects.impl.PlaySound" />
+    <registerEffect name="fadeSound" class="de.lessvoid.nifty.effects.impl.FadeSound" />
+    
+    <registerSound id="select" filename="Sounds/menu_select.ogg"/>
+    <registerSound id="alert" filename="Sounds/alert.ogg"/>
+
+    <!-- ####################################### -->
+    <!-- ############## Controls ############### -->
+    <!-- ####################################### -->
+    
+    <!--
+        Progressbar
+    -->
+    <controlDefinition name="progressbar" controller="theorb.Game">
+        <image filename="Interface/progressbar/outer.png" childLayout="absolute" imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15">
+            <image id="progressbar" x="0" y="0" filename="Interface/progressbar/inner.png" width="32px" height="100%" imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15" />
+        </image>
+    </controlDefinition>
+    
+    <!--
+        Outro
+    -->
+    <controlDefinition name="outro-content">
+        <panel childLayout="vertical" width="100%">
+            <panel height="800px" childLayout="vertical" />
+
+            <!-- Authors -->
+            <image filename="Interface/logo.png" align="center" width="410px" height="99px" />
+            <panel height="50px" childLayout="vertical" />
+            <text style="button-font" text="by m4tx" align="center" />
+            <panel height="50px" childLayout="vertical" />
+            <text style="button-font" text="The Orb Map Editor&#13;&#10;by rhino and m4tx" align="center" />
+            <panel height="50px" childLayout="vertical" />
+            <text style="button-font" text="The Orb is written in Java&#13;&#10;" align="center" />
+            <image filename="Interface/logos/java.png" align="center" />
+            <panel height="100px" childLayout="vertical" />
+            
+            <!-- Engine -->
+            <text style="button-font" text="The Orb uses jMonkeyEngine&#13;&#10;" align="center" />
+            <image filename="Interface/logos/jmonkey.png" align="center" />
+            <panel height="100px" childLayout="vertical" />
+
+            <!-- Resources -->
+            <text style="button-font" text="The Orb uses resources - on CreativeCommons&#13;&#10;license - from the following sources:" align="center" />
+            <panel height="50px" childLayout="vertical" />
+            <text style="button-font" text="Freesound - sound samples&#13;&#10;" align="center" />
+            <image filename="Interface/logos/freesound.png" align="center" />
+            <panel height="30px" childLayout="vertical" />
+            <text style="button-font" text="80921__justinbw__buttonchime02up.wav&#13;&#10;
+50560__broumbroum__sf3-sfx-menu-select-r.wav&#13;&#10;" align="center" />
+            <panel height="50px" childLayout="vertical" />
+
+            <text style="button-font" text="Nine Inch Nails - music&#13;&#10;" align="center" />
+            <image filename="Interface/logos/nin.png" align="center" />
+            <panel height="30px" childLayout="vertical" />
+            <text style="button-font" text="The Four of Us are Dying" align="center" />
+            <panel height="50px" childLayout="vertical" />
+            
+            <text style="button-font" text="ccMixter - music&#13;&#10;" align="center" />
+            <image filename="Interface/logos/ccmixter.png" align="center" />
+            <panel height="30px" childLayout="vertical" />
+            <text style="button-font" text="&quot;Feeling Dark (Behind The Mask)&quot; by 7OOP3D&#13;&#10;
+&quot;Silence Await&quot; by cdk&#13;&#10;
+&quot;acoustic&quot; by delmo&#13;&#10;
+&quot;Recommencer&quot; by DoKashiteru&#13;&#10;
+&quot;The Annual New England Xylophone Symposium&quot; by DoKashiteru&#13;&#10;
+&quot;Great Kiskadee&quot; by Gurdonark&#13;&#10;
+&quot;Grass Mask&quot; by septahelix&#13;&#10;
+&quot;Super Backpack of the Audible Fable&quot; by septahelix" align="center" />
+            <panel height="50px" childLayout="vertical" />
+            
+            <text style="button-font" text="Font Squirrel - fonts&#13;&#10;" align="center" />
+            <image filename="Interface/logos/font_squirrel.png" align="center" />
+            <panel height="30px" childLayout="vertical" />
+            <text style="button-font" text="ArmWrestler" align="center" />
+            
+            <panel height="50px" childLayout="vertical" />
+
+            <text style="button-font" text="Skyboxes - by Roel z'n Boel" align="center" />
+            <panel height="300px" childLayout="vertical" />
+            <text style="button-font" text="Thank you all!" align="center" />
+            <panel height="20px" childLayout="vertical" />
+        </panel>
+    </controlDefinition>
+
+    <!-- ####################################### -->
+    <!-- ############### Styles ################ -->
+    <!-- ####################################### -->
+    <style id="special-scrollpanel#scrollpanel">
+
+        <attributes />
+    </style>
+
+    <!--
+        Main menu style
+    -->
+    <style id="menu">
+        <attributes align="center" valign="center" backgroundColor="#fff8" width="450px" height="409px" />
+    </style>
+
+    <style id="menu-font">
+        <attributes font="Interface/fonts/armwrestler-36-outline.fnt" />
+    </style>
+
+    <!--
+        Menu item style
+    -->
+    <style id="menu-item" base="menu-font">
+        <attributes align="center" textHAlign="center" color="#cccf" width="100%"
+                focusable="true"
+                controller="de.lessvoid.nifty.controls.MenuItemControl"
+                inputMapping="de.lessvoid.nifty.input.mapping.MenuInputMapping" />
+        <effect>
+            <onHover name="focus" />
+            <onFocus name="colorBar" width="120%" height="120%" color="#fff5" />
+            <onFocus name="textColor" color="#ffff" />
+            <onFocus name="playSound" sound="select" />
+            <onGetFocus name="updateScrollpanelPositionToDisplayElement" target="menuScrollPanel" oneShot="true" />
+            <onGetFocus name="show" targetElement="$targetElement" oneShot="true" />
+        </effect>
+    </style>
+  
+    <!-- ####################################### -->
+    <!-- ############## Screens ################ -->
+    <!-- ####################################### -->
+
+    <!--
+      Start screen
+    -->
+    <screen id="start" controller="theorb.GUI.Screens.Start"/>
+
+    <!--
+      Loading screen
+    -->
+    <screen id="loading" controller="theorb.GUI.Screens.Loading">
+        <layer id="layer" childLayout="center" backgroundColor="#000">
+            <panel id="loadingpanel" childLayout="vertical" align="center" valign="center" height="32px" width="400px">
+                <control name="progressbar" align="center" valign="center" width="400px" height="32px" />
+                <control id="loadingtext" name="label" align="center" text="                                                  "/>
+            </panel>
+        </layer>
+    </screen>
+
+    <!--
+      Main menu
+    -->
+    <screen id="main-menu" controller="theorb.GUI.Screens.MainMenu">
+        <layer id="top" childLayout="vertical" backgroundImage="Interface/background.png">
+            <panel id="panel" width="100%" height="30%" childLayout="center">
+                <image id="image" filename="Interface/logo.png" align="center" valign="center" width="60%" height="60%" />
+            </panel>
+        </layer>
+
+        <layer id="menu" childLayout="vertical">
+            <panel height="20%" childLayout="center"/>
+            <panel height="*" width="100%" childLayout="center">
+                <panel id="mainMenu" font="menu.fnt" style="menu" childLayout="center" padding="50px,20px,60px,20px">
+                    <panel childLayout="horizontal" width="100%" height="100%">
+                        <control id="menuScrollPanel" name="scrollPanel" style="special-scrollpanel" horizontal="false" stepSizeY="30" height="100%">
+                            <panel id="menu-panel-parent" childLayout="center" width="100%" height="0px" padding="0px,40px,0px,40px">
+                                <panel id="menu-panel" childLayout="vertical" width="100%"/>
+                            </panel>            
+                        </control>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+    </screen>
+    
+    <!--
+      In-game menu
+    -->
+    <screen id="in-game-menu" controller="theorb.GUI.Screens.InGameMenu" alternateKey="noPopupFade">
+        <layer id="layer" backgroundColor="#000a" childLayout="center">
+            <effect>
+                <onStartScreen name="fade" startColor="#0000" endColor="#000a" length="250"/>
+                <onEndScreen name="fade" startColor="#000a" endColor="#0000" length="250" startDelay="250"/>
+            </effect>
+            <panel style="nifty-panel-red" childLayout="vertical" width="250px" height="160px" align="center" valign="center">
+                <text id="text" font="aurulent-sans-16.fnt" color="#000f" text="Game menu" align="center" />
+                <panel height="5%"/> <!-- separator -->
+                <control id="backButton" name="button" width="80%" label="Back to the game" align="center">
+                    <interact onRelease="backToTheGame()" />
+                </control>
+                <panel height="5%"/> <!-- separator -->
+                <control id="optionsButton" name="button" width="80%" label="Restart level" align="center">
+                    <interact onRelease="restart()" />
+                </control>
+                <control id="mainMenuButton" name="button" width="80%" label="Main menu" align="center">
+                    <interact onRelease="mainMenu()" />
+                </control>
+                <panel height="5%"/> <!-- separator -->
+                <control id="quitButton" name="button" width="80%" label="Quit" align="center">
+                    <interact onRelease="quit()" />
+                </control>
+                <effect>
+                    <onStartScreen name="fade" start="#0" end="#f" length="150" startDelay="250" inherit="true"/>
+                    <onStartScreen name="imageSize" timeType="exp" factor="3.5" startSize="1.5" endSize="1.0" inherit="true" length="150" startDelay="250"/>
+                    <onEndScreen name="fade" start="#f" end="#0" length="150" startDelay="0" inherit="true"/>
+                    <onEndScreen name="imageSize" timeType="exp" factor="3.5" startSize="1.0" endSize="1.5" inherit="true" length="150" startDelay="0"/>
+                </effect>
+            </panel>
+        </layer>
+    </screen>
+    
+    <!--
+      In-game
+    -->
+    <screen id="in-game" controller="theorb.GUI.Screens.InGame" />
+    
+    <!--
+      Outro
+    -->
+    <screen id="outro" controller="theorb.GUI.Screens.Outro" inputMapping="de.lessvoid.nifty.input.mapping.DefaultScreenMapping">
+        <layer id="logo" childLayout="vertical">
+            <control id="scrollbarPanel" style="autoscroll" name="scrollPanel" horizontal="false" vertical="false" height="100%">
+                <panel id="myScrollStuff" childLayout="vertical" width="100%">
+                    <effect>
+                        <onCustom name="autoScroll" length="90000" start="300" end="-3500" inherit="true" onEndEffect="returnToMainMenu()" neverStopRendering="true"/>
+                    </effect>
+                </panel>
+            </control>
+        </layer>
+    </screen>
+    
+    <!--
+      End
+    -->
+    <screen id="end">
+    </screen>
+    
+    <!-- ####################################### -->
+    <!-- ############### Popups ################ -->
+    <!-- ####################################### -->
+
+    <!--
+      Exit
+    -->
+    <popup id="popupExit" childLayout="center" backgroundColor="#000a">
+        <effect>
+            <onStartScreen name="fade" startColor="#0000" endColor="#000a" length="250" alternateDisable="noPopupFade"/>
+            <onStartScreen name="playSound" sound="alert" startDelay="500"/>
+            <onEndScreen name="fade" startColor="#000a" endColor="#0000" length="250" startDelay="250" alternateDisable="noPopupFade"/>
+        </effect>
+        <panel style="nifty-panel-red" childLayout="center" padding="18px,28px,40px,16px" width="30%" height="20%" align="center" valign="center">
+            <effect>
+                <onStartScreen name="fade" start="#0" end="#f" length="150" startDelay="250"/>
+                <onStartScreen name="imageSize" timeType="exp" factor="3.5" startSize="1.5" endSize="1.0" inherit="true" length="150" startDelay="250"/>
+                <onEndScreen name="fade" start="#f" end="#0" length="150" startDelay="0"/>
+                <onEndScreen name="imageSize" timeType="exp" factor="3.5" startSize="1.0" endSize="1.5" inherit="true" length="150" startDelay="0"/>
+            </effect>
+            <panel childLayout="vertical" align="center" valign="center">
+                <effect>
+                    <onStartScreen name="alphaHide" length="500" inherit="true"/>
+                    <onEndScreen name="fade" length="10" start="#f" end="#0" inherit="true"/>
+                </effect>
+                <panel childLayout="center" height="70%" width="100%">
+                    <text text="Are you sure?" style="base-font" align="center" valign="center" color="#000f"/>
+                </panel>
+                <panel childLayout="horizontal" align="center" height="30%">
+                    <panel childLayout="center" width="50%">
+                        <control id="yesButton" name="button" label="Yes" width="100px" align="center">
+                            <interact onClick="popupExit(yes)"/>
+                        </control>
+                    </panel>
+                    <panel childLayout="center" width="50%">
+                        <control id="noButton" name="button" label="No" width="100px" align="center">
+                            <interact onClick="popupExit(no)"/>
+                        </control>
+                    </panel>
+                </panel>
+            </panel>
+        </panel>
+    </popup>
+    
+    <popup id="popupWon" childLayout="center" backgroundColor="#000a">
+        <effect>
+            <onStartScreen name="fade" startColor="#0000" endColor="#000a" length="250" alternateDisable="noPopupFade"/>
+            <onStartScreen name="playSound" sound="alert" startDelay="500"/>
+            <onEndScreen name="fade" startColor="#000a" endColor="#0000" length="250" startDelay="250" alternateDisable="noPopupFade"/>
+        </effect>
+        <panel style="nifty-panel-red" childLayout="center" padding="18px,28px,40px,16px" width="30%" height="20%" align="center" valign="center">
+            <effect>
+                <onStartScreen name="fade" start="#0" end="#f" length="150" startDelay="250"/>
+                <onStartScreen name="imageSize" timeType="exp" factor="3.5" startSize="1.5" endSize="1.0" inherit="true" length="150" startDelay="250"/>
+                <onEndScreen name="fade" start="#f" end="#0" length="150" startDelay="0"/>
+                <onEndScreen name="imageSize" timeType="exp" factor="3.5" startSize="1.0" endSize="1.5" inherit="true" length="150" startDelay="0"/>
+            </effect>
+            <panel childLayout="vertical" align="center" valign="center">
+                <effect>
+                    <onStartScreen name="alphaHide" length="500" inherit="true"/>
+                    <onEndScreen name="fade" length="10" start="#f" end="#0" inherit="true"/>
+                </effect>
+                <panel childLayout="vertical" align="center" height="100%">
+                    <text text="Congratulations!&#13;&#10;You won the level!" style="base-font" align="center" valign="center" color="#000f"/>
+                    <panel childLayout="center" width="100%">
+                        <control id="yesButton" name="button" label="OK" width="100px" align="center">
+                            <interact onClick="popupWon(yes)"/>
+                        </control>
+                    </panel>
+                </panel>
+            </panel>
+        </panel>
+    </popup>
+</nifty>
